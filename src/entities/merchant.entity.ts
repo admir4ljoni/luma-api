@@ -9,6 +9,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { UsersEntity } from './user.entity';
+import { EventEntity } from './event.entity';
 
 @Table({
   tableName: 'merchants',
@@ -65,4 +66,7 @@ export class MerchantEntity extends Model<MerchantEntity> {
     as: 'cashiers',
   })
   cashiers: UsersEntity[];
+
+  @HasMany(() => EventEntity)
+  events: EventEntity[];
 }

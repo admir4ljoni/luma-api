@@ -7,6 +7,7 @@ import {
   Model,
   PrimaryKey,
   Table,
+  Unique,
 } from 'sequelize-typescript';
 import { RolesEntity } from './role.entity';
 import { UserSessionEntity } from './user_session.entity';
@@ -44,6 +45,7 @@ export class UsersEntity extends Model<UsersEntity> {
   })
   password: string;
 
+  @Unique
   @Column({
     type: DataType.STRING,
     allowNull: false,
