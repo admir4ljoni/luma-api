@@ -3,11 +3,13 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { MerchantEntity } from './merchant.entity';
+import { PromoEntity } from './promo.entity';
 
 @Table({
   tableName: 'events',
@@ -58,4 +60,7 @@ export class EventEntity extends Model<EventEntity> {
     onDelete: 'CASCADE',
   })
   merchant: MerchantEntity;
+
+  @HasMany(() => PromoEntity)
+  promos: PromoEntity[];
 }
