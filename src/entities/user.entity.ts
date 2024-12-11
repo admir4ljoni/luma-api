@@ -75,7 +75,7 @@ export class UsersEntity extends Model<UsersEntity> {
     allowNull: false,
   })
   merchant_assigned: string;
-  
+
   @HasOne(() => MerchantEntity)
   merchant_assigned_to: MerchantEntity;
 
