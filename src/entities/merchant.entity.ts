@@ -1,4 +1,13 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
 import { UsersEntity } from './user.entity';
 
 @Table({
@@ -17,37 +26,43 @@ export class MerchantEntity extends Model<MerchantEntity> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   name: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: true
+    allowNull: true,
   })
   profile_picture: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   status: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   category: string;
 
   @ForeignKey(() => UsersEntity)
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
-  user_id: string
+  user_id: string;
 
   @BelongsTo(() => UsersEntity, {
-    onDelete: 'DO NOTHING'
+    onDelete: 'DO NOTHING',
   })
   owner: UsersEntity;
+
+  @HasMany(() => UsersEntity, {
+    foreignKey: 'merchant_assigned',
+    as: 'cashiers',
+  })
+  cashiers: UsersEntity[];
 }

@@ -4,7 +4,6 @@ import {
   DataType,
   ForeignKey,
   HasMany,
-  HasOne,
   Model,
   PrimaryKey,
   Table,
@@ -76,8 +75,10 @@ export class UsersEntity extends Model<UsersEntity> {
   })
   merchant_assigned: string;
 
-  @HasOne(() => MerchantEntity)
-  merchant_assigned_to: MerchantEntity;
+  @BelongsTo(() => MerchantEntity, {
+    onDelete: 'SET NULL',
+  })
+  merchant_assigned_to: string;
 
   @ForeignKey(() => RolesEntity)
   @Column({
